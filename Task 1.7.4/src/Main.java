@@ -2111,16 +2111,26 @@ public class Main {
 //        System.out.println(String.format("%08X and %08X", x, y));
 
 
-int a = int b;
-int a = int b;
 
+//             FileOutputStream fos = new FileOutputStream("test.txt");
+//                fos.write("Hello FileOutputStream world".getBytes());
+//                fos.close();
 
-
+//        Давайте скопируем файл при помощи потоков. Будем для этого использовать блоковые read()-write(), которые позволяют за раз считывать-записывать целый массив байтов.
+//    private static void copyFileUsingStream(String source, String dest) throws IOException {
+//        InputStream fis = new FileInputStream(source);
+//        OutputStream fos = new FileOutputStream(dest);
+//        byte[] buffer = new byte[1024];
+//        int length;
+//        while ((length = fis.read(buffer)) > 0) {
+//            fos.write(buffer, 0, length);
+//        }
+//        fis.close();
+//        fos.close();
 
 
 
 
     }
-
 }
 
