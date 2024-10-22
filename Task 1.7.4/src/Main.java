@@ -2045,7 +2045,6 @@ public class Main {
 //        return new String(encrypted);
 
 
-
 //        for(int i = 0; i < 5; i++) {
 //            System.out.print(i + " | ");
 //            for(int j = 0; j < 5; j++) {
@@ -2053,7 +2052,6 @@ public class Main {
 //            }
 //            System.out.print('\n');
 //        }
-
 
 
 //        Пример использования байтового потока:
@@ -2064,7 +2062,6 @@ public class Main {
 //                    data = inputStream.read();
 //                }
 //                inputStream.close();
-
 
 
 //        Пример использования символьного потока:
@@ -2079,7 +2076,6 @@ public class Main {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
 
 
 //    Пример использования буферизированного потока:
@@ -2111,12 +2107,23 @@ public class Main {
 //        System.out.println(String.format("%08X and %08X", x, y));
 
 
-
 //             FileOutputStream fos = new FileOutputStream("test.txt");
 //                fos.write("Hello FileOutputStream world".getBytes());
 //                fos.close();
 
-//        Давайте скопируем файл при помощи потоков. Будем для этого использовать блоковые read()-write(), которые позволяют за раз считывать-записывать целый массив байтов.
+
+//        Запустите этот метод на локальной машине. Лучше всего даже использовать не текстовые файлы, а картинки. Посмотрите, не поломается ли скопированная картинка, откроется ли нормально средствами просмотра.
+//
+//        Здесь файл копируется блоками по 1024 байта. Поэкспериментируйте на больших файлах, замерьте скорость копирования при разных размерах буфера.
+//
+//        Код для запуска:
+
+
+//        copyFileUsingStream("input.txt", "output.txt");
+//    }
+//}
+//
+//    //        Давайте скопируем файл при помощи потоков. Будем для этого использовать блоковые read()-write(), которые позволяют за раз считывать-записывать целый массив байтов.
 //    private static void copyFileUsingStream(String source, String dest) throws IOException {
 //        InputStream fis = new FileInputStream(source);
 //        OutputStream fos = new FileOutputStream(dest);
@@ -2131,6 +2138,18 @@ public class Main {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     }
+
 }
 
