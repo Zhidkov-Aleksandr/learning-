@@ -2112,7 +2112,10 @@ public class Main {
 
 
 int a = int b;
-        int c = int n;
+int a = int b;
+int a = int b;
+int a = int b;
+int a = int b;
 
 
 
