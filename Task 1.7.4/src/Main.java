@@ -2111,8 +2111,8 @@ public class Main {
 //        System.out.println(String.format("%08X and %08X", x, y));
 
 
-int a = b;
-
+int a = int b;
+        int c = int n;
 
 
 
