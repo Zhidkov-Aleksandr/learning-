@@ -3,8 +3,21 @@ import java.util.Arrays;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.*;
-
-
+import java.io.FileReader;
+import java.net.Socket;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -2165,11 +2178,276 @@ public class Main {
 //         writer.flush();
 //         writer.close();
 // Код создает файл output.txt и записывает в него логическое значение true.
-        
+
+//        Пример использования класса Reader:
+//        FileReader reader = new FileReader("input.txt");
+//        int c;
+//        while ((c = reader.read()) != -1) {
+//            System.out.print((char) c);
+//        }
+//        reader.close();
+//        Этот код открывает файл input.txt и считывает его содержимое в консоль.
+
+//        Пример использования класса Writer:
+
+//                BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+//                writer.write("Hello, Wo555rld!");
+//                writer.close();
+
+//        Код создает файл output.txt и записывает в него строку «Hello, World!».
 
 
 
+//        Копируем из файла в файл через буфер размером  char[] buffer = new char[1024]
+//        copyFileUsingStream(new File("src/win1251.txt"),
+//                Charset.forName("windows-1251"),
+//                new File("src/utf8.txt"),
+//                Charset.forName("utf-8"));
+//
+//        private static void copyFileUsingStream(File source, Charset sourceEnc, File dest, Charset descEnc) throws IOException {
+//            Reader fis = new FileReader(source, sourceEnc);
+//            Writer fos = new FileWriter(dest, descEnc);
+//            char[] buffer = new char[1024];
+//            int length;
+//            while ((length = fis.read(buffer)) > 0) {
+//                fos.write(buffer, 0, length);
+//            }
+//            fis.close();
+//            fos.close();
 
+
+//        Пример использования InputStreamReader:
+//        FileInputStream inputStream = new FileInputStream("input.txt");
+//        InputStreamReader reader = new InputStreamReader(inputStream);
+//        int c;
+//        while ((c = reader.read()) != -1) {
+//            System.out.print((char) c);
+//        }
+//        reader.close();
+//        Этот код открывает файл input.txt и считывает его содержимое в консоль.
+
+
+//        Пример использования OutputStreamWriter:
+//
+//                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt")));
+//                writer.write("Hello, World!");
+//                writer.close();
+//
+//             Код создает файл output.txt и записывает в него строку «Hello, World!».
+
+
+//        Пример использования FileInputStream:
+//        FileInputStream inputStream = new FileInputStream("input.txt");
+//        int data;
+//        while ((data = inputStream.read()) != -1) {
+//            System.out.print((char) data);
+//        }
+//        inputStream.close();
+//        Этот код открывает файл input.txt и считывает его содержимое в консоль.
+//
+//                Пример использования FileOutputStream:
+//        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("output.txt")));
+//        writer.write("Hello, World!");
+//        writer.close();
+//        Код создает файл output.txt и записывает в него строку «Hello, World!».
+//
+//        Пример использования RandomAccessFile:
+//        RandomAccessFile randomAccessFile = new RandomAccessFile("input.txt", "rw");
+//        randomAccessFile.seek(10); // перемещаемся на 10 байт от начала файла
+//        int data = randomAccessFile.read();
+//        System.out.println((char) data);
+//        randomAccessFile.close();
+//        Этот код открывает файл input.txt, перемещается на 10-й байт и считывает его в консоль.
+
+
+//        Этот код создает объект Scanner для чтения из файла input.txt, считывает данные из него и выводит на экран. После завершения цикла while файл закрывается.
+//// Создание объекта Scanner для чтения из файла
+//        Scanner scanner = new Scanner(new File("input.txt"));
+//        // Чтение данных из файла и вывод на экран
+//        while (scanner.hasNext()) {
+//            System.out.println(scanner.next());
+//        }
+//        // Закрытие файла
+//        scanner.close();
+
+//        Этот код считывает данные из файла input.txt и выводит их на экран. После завершения цикла while, метод isEndOfStream() проверяет, достигнут ли конец файла. Если да, то выводится сообщение «Достигнут конец файла».
+//        FileInputStream inputStream = new FileInputStream("input.txt");
+//        Scanner scanner = new Scanner(inputStream);
+//        while (scanner.hasNext()) {
+//            System.out.println(scanner.next());
+//        }
+//        if (scanner.isEndOfStream()) {
+//            System.out.println("Достигнут конец файла.");
+//        } else {
+//            throw new RuntimeException("Ошибка чтения файла.");
+//        }
+
+
+//        Пример использования BufferedInputStream:
+//        BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream("input.txt"));
+//        int data;
+//        while ((data = inputStream.read()) != -1) {
+//            System.out.print((char) data);
+//        }
+//        inputStream.close();
+//        Этот код открывает файл input.txt и считывает его содержимое в консоль. Буфер используется для временного хранения прочитанных данных, что позволяет ускорить процесс чтения.
+
+//        Пример использования BufferedOutputStream:
+//        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("output.txt"));
+//        outputStream.write("Hello, World!".getBytes());
+//        outputStream.close();
+//        Код создает файл output.txt и записывает в него строку «Hello, World!». Буфер используется для временного хранения записываемых данных, что позволяет ускорить процесс записи.
+
+//        Пример использования BufferedReader:
+//        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            System.out.println(line);
+//        }
+//        reader.close();
+//        Этот код открывает файл input.txt и считывает его содержимое построчно в консоль. Буфер используется для хранения прочитанных строк, что позволяет ускорить чтение.
+
+//        Пример использования BufferedWriter:
+//        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+//        writer.write("Hello, World!");
+//        writer.close();
+//        Код создает файл output.txt и записывает в него строку «Hello, World!». Буфер используется для временного хранения записываемых данных, что позволяет ускорить процесс записи.
+
+//        Этот код создает сокет, устанавливает соединение с локальным хостом на порту 8080 и отправляет HTTP-запрос GET. Затем он получает ответ от сервера и выводит его на экран. После этого сокет закрывается.
+//        // Создание сокета
+//        Socket socket = new Socket("localhost", 8080);
+//
+//        // Отправка запроса
+//        socket.getOutputStream().write("GET / HTTP/1.1\r\nHost: localhost\r\n\r\n".getBytes());
+//
+//        // Получение ответа
+//        byte[] buffer = new byte[1024];
+//        int bytesRead = socket.getInputStream().read(buffer);
+//        System.out.println(new String(buffer, 0, bytesRead));
+//
+//        // Закрытие сокета
+//        socket.close();
+
+//        Для использования заголовка запроса можно использовать метод билдер headers. На вход заготовка можно подать name — имя заголовка и value — значение заголовка.
+//        request = HttpRequest.newBuilder()
+//                .uri(new URI(url))
+//                .headers(<name>,<value>)
+//        .headers("Content-Type","application/json")
+//                .GET()
+//                .build();
+
+
+
+//        Пример использования HTTP-клиента в Java для отправки GET-запроса:
+//        try {
+//            URL url = new URL("https://jsonplaceholder.typicode.com/users");
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod("GET");
+//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//            while ((inputLine = in.readLine()) != null) {
+//                response.append(inputLine);
+//            }
+//            in.close();
+//            System.out.println(response.toString());
+//            connection.disconnect();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        Этот пример отправляет GET-запрос на указанный URL(адрес) и выводит ответ сервера в консоль.
+//        Важно помнить об обработке исключений для обработки возможных ошибок сети.
+//        С помощью данного кода можно сделать запрос на любой сайт, который предоставляет API
+//        для получения данных. Например, можно сделать запрос на сайт
+//        https://jsonplaceholder.typicode.com/users, который предоставляет пользовательские
+//        // данные в формате JSON. В данном случае код будет получать данные о пользователях с этого сайта.
+//        Подход реализации сетевого взаимодействия через HttpURLConnection устарел.
+//                Есть новые подходы реализации например HTTP Client.
+//        Прочитать о библиотеке можно в статье Exploring the New HTTP Client in Java.
+
+
+//        try {
+//            int x = Integer.parseInt("42"); // Преобразование строки в число
+//            System.out.println(x);
+//        } catch (NumberFormatException e) {
+//            // Обработка исключения
+//            System.err.println("Ошибка при преобразовании строки в число.");
+//        }
+//        Этот код пытается преобразовать строку «42» в число.
+//        Если строка не является числом, то будет выброшено исключение NumberFormatException.
+//        В этом случае выполнение блока try будет прервано, и управление перейдет
+//        к блоку catch, который выведет сообщение об ошибке.
+
+//        Пример GET запроса
+
+//        GET-запрос — метод HTTP, который используется для получения информации с сервера.
+//        GET-запросы не изменяют состояние сервера. Не передает тело запроса,
+//        но может передавать необходимую информацию в ссылке запроса.
+
+//        HttpClient httpClient = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
+//                .GET()
+//                .build();
+//
+//        try {
+//            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+//            System.out.println("Response Code: " + response.statusCode());
+//            System.out.println("Response Body: " + response.body());
+//        } catch (Exception e) {
+//            System.err.println("Error making HTTP request: " + e.getMessage());
+//        }
+//        В этом примере мы создаем объект HttpClient и формируем GET запрос к ресурсу
+//    https://jsonplaceholder.typicode.com/posts/1. Затем отправляем этот запрос с помощью
+//        // метода httpClient.send(). Ответ на запрос сохраняем в объект response, где мы можем получить
+//        // статус код ответа и тело ответа. Если происходит ошибка при выполнении HTTP запроса, то выводим сообщение об ошибке в консоль.
+
+
+//        Детальнее рассмотрим код:
+//
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
+//                .GET()
+//                .build();
+//        Тут создается билдер позволяющий вызвать несколько методов.
+//
+//                метод .uri() на вход принимает путь запроса;
+//        метод .GET() реализует get запрос;
+//        метод .build(); заканчивает формирование конструкции билдера.
+//        Рассмотрим код:
+//
+//        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+//        HttpResponse позволяет обработать ответ.
+
+
+//        Пример POST запроса
+//
+//        POST-запрос — метод HTTP, который используется для создания нового ресурса на сервере.
+//                POST-запросы обычно используются для отправки данных формы, загрузки файлов и других операций, которые изменяют состояние сервера.
+//                При использовании POST запроса передается тело запроса. Тело запроса это набор данных в определенном формате.
+
+//        // Создаем экземпляр HttpClient
+//        HttpClient client = HttpClient.newHttpClient();
+//        // Создаем URI для отправки POST запроса
+//        URI uri = URI.create("https://jsonplaceholder.typicode.com/posts");
+//        // Создаем тело запроса
+//        String requestBody = "{\"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}";
+//        // Создаем HttpRequest с методом POST и устанавливаем тело запроса
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(uri)
+//                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+//                .header("Content-Type", "application/json")
+//                .build();
+//        // Отправляем POST запрос и получаем ответ
+//        try {
+//            HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+//            // Выводим статус код и тело ответа
+//            System.out.println("Response status code: " + response.statusCode());
+//            System.out.println("Response body: " + response.body());
+//        } catch (Exception e) {
+//            System.err.println("Error occurred while sending POST request: " + e.getMessage());
+//        }
+//
 
 
     }
