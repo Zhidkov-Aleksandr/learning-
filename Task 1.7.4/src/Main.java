@@ -2137,7 +2137,15 @@ public class Main {
 
 
 
+       // Создание объекта ByteOutputStream для записи в файл
+   //      FileOutputStream outputStream = new FileOutputStream("output.txt");
+   //      ByteOutputStream byteOutputStream = new ByteOutputStream(outputStream);
+        // Запись данных в поток
+   //      byteOutputStream.write(65); // Записываем символ 'A'
+    //     byteOutputStream.flush(); // Очищаем буфер и записываем данные в файл
 
+        // Закрытие потока
+   //      byteOutputStream.close();
 
 
 
