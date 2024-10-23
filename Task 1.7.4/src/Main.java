@@ -2136,7 +2136,7 @@ public class Main {
 //        fos.close();
 
 
-
+// Этот код создает объект ByteOutputStream для записи в файл output.txt, записывает в него символ «А» и закрывает поток.
        // Создание объекта ByteOutputStream для записи в файл
    //      FileOutputStream outputStream = new FileOutputStream("output.txt");
    //      ByteOutputStream byteOutputStream = new ByteOutputStream(outputStream);
@@ -2148,9 +2148,24 @@ public class Main {
    //      byteOutputStream.close();
 
 
+        // Пример использования DataInputStream:
+ // DataInputStream inputStream = new DataInputStream(new FileInputStream("input.txt"));
+ //        int data;
+ //        while ((data = inputStream.readInt()) != -1) {
+ //            System.out.println(data);
+ //        }
+ //        inputStream.close();
+
+// Этот код открывает файл input.txt и считывает из него целые числа.
 
 
-
+//         Пример использования DataOutputStream:
+//         BufferedWriter writer = new BufferedWriter(new DataOutputStream(new FileOutputStream("output.txt")));
+//         writer.writeBoolean(true);
+//         writer.flush();
+//         writer.close();
+// Код создает файл output.txt и записывает в него логическое значение true.
+        
 
 
 
