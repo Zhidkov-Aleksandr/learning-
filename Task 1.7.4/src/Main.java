@@ -18,6 +18,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -2150,24 +2151,24 @@ public class Main {
 
 
 // Этот код создает объект ByteOutputStream для записи в файл output.txt, записывает в него символ «А» и закрывает поток.
-       // Создание объекта ByteOutputStream для записи в файл
-   //      FileOutputStream outputStream = new FileOutputStream("output.txt");
-   //      ByteOutputStream byteOutputStream = new ByteOutputStream(outputStream);
+        // Создание объекта ByteOutputStream для записи в файл
+        //      FileOutputStream outputStream = new FileOutputStream("output.txt");
+        //      ByteOutputStream byteOutputStream = new ByteOutputStream(outputStream);
         // Запись данных в поток
-   //      byteOutputStream.write(65); // Записываем символ 'A'
-    //     byteOutputStream.flush(); // Очищаем буфер и записываем данные в файл
+        //      byteOutputStream.write(65); // Записываем символ 'A'
+        //     byteOutputStream.flush(); // Очищаем буфер и записываем данные в файл
 
         // Закрытие потока
-   //      byteOutputStream.close();
+        //      byteOutputStream.close();
 
 
         // Пример использования DataInputStream:
- // DataInputStream inputStream = new DataInputStream(new FileInputStream("input.txt"));
- //        int data;
- //        while ((data = inputStream.readInt()) != -1) {
- //            System.out.println(data);
- //        }
- //        inputStream.close();
+        // DataInputStream inputStream = new DataInputStream(new FileInputStream("input.txt"));
+        //        int data;
+        //        while ((data = inputStream.readInt()) != -1) {
+        //            System.out.println(data);
+        //        }
+        //        inputStream.close();
 
 // Этот код открывает файл input.txt и считывает из него целые числа.
 
@@ -2195,7 +2196,6 @@ public class Main {
 //                writer.close();
 
 //        Код создает файл output.txt и записывает в него строку «Hello, World!».
-
 
 
 //        Копируем из файла в файл через буфер размером  char[] buffer = new char[1024]
@@ -2337,7 +2337,6 @@ public class Main {
 //                .build();
 
 
-
 //        Пример использования HTTP-клиента в Java для отправки GET-запроса:
 //        try {
 //            URL url = new URL("https://jsonplaceholder.typicode.com/users");
@@ -2450,7 +2449,843 @@ public class Main {
 //
 
 
-    }
+//        Задание 6.8.1
+//        Написать программу на Java, которая считывает данные из файла и выводит их на экран.
+//
+//        FileInputStream inputStream = new FileInputStream("input.txt");
+//        Scanner scanner = new Scanner(inputStream);
+//
+//        while (scanner.hasNext()) {
+//            System.out.println(scanner.next());
+//        }
+//
+//        if (scanner.isEndOfStream()) {
+//            System.out.println("Достигнут конец файла.");
+//        } else {
+//            throw new RuntimeException("Ошибка чтения файла.");
+//        }
 
+
+//        Задание 6.8.2
+//        Можно создать свой байтовый поток ввода OneZeroStream, который выдает цифры 0 и 1.
+////        Так, чтобы программа:
+//        Вывод:
+////        1 0 1 0 1 0 1 0 1 0
+////        Определите размер (ёмкость) буфера, который в который считываются данные.
+
+//        Scanner scanner = new Scanner(new OneZeroStream());
+//        for (int i = 0; i < 10; i++) {
+//            System.out.print(scanner.nextInt());
+//        }
+//        public class OneZeroStream extends InputStream {
+//            private final byte[] bytes = {'1', ' ', '0', ' '};
+//            int i = 0;
+//            public int read() {
+//                if (i >= bytes.length) {
+//                    i = 0;
+//                }
+//                return bytes[i++];
+//            }
+//        }
+
+
+//        Задание 6.8.3
+//        Напишите программу, которая считывает файл и считает количество цифр в файле. Файл должен содержать: 09542tt3dsgbdfbvxsd4tf34yhv4ff8g23c
+//
+//        FileInputStream fin = new FileInputStream("asciitable.txt");
+//        int c;
+//        int s = 0;
+//        while((c = fin.read()) != -1){
+//            if (c >='0' && c <= '9')
+//                s++;
+//        }
+//        System.out.println(s);
+//        fin.close();
+
+//        Задание 6.8.4
+//        В файле receipt.txt хранится информация о покупках. Каждая новая строка — новый продукт. В строке информация записана через ; и выглядит следующим образом: <Продукт>;<Количество>;<Цена за 1 шт>.
+//        Ваша задача — реализовать метод getReceipt(), который должен посчитать суммарную стоимость чека и вернуть её в виде строки.
+//                Сумма с точностью до копеек, например: 125.90
+//       Пример
+//        Файл receipt.txt:
+//        Помидор;4;30.00
+//        Колбаса;1;80.00
+//        Хлеб;1;50.00
+//        Метод getReceipt() должен вернуть 250.00.
+
+//        public class Solution {
+//            public String getReceipt() {
+//                Scanner scanner = new Scanner(new FileInputStream("Root/src/receipt.txt"));
+//                double result = 0;
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] productInfo = scanner.nextLine().split(";");
+//                    result += Integer.parseInt(productInfo[1]) * Double.parseDouble(productInfo[2]);
+//                }
+//
+//                return String.format(Locale.US, "%.2f", result);
+//            }
+//        }
+
+//        Задание 6.8.5
+//        Вам дан файл text.txt. Ваша задача — реализовать метод getCountWords(), возвращающий
+//        количество слов в тексте (словом считается всё, что отделено пробелами или знаками препинания).
+//        Пример
+//        Файл text.txt:
+
+//        var solution = new Solution();
+//        System.out.println(solution.getCountWords());
+//
+//        public class Solution {
+//            public int getCountWords() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("text.txt"));
+//                int countWords = 0;
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] words = scanner.nextLine().split(" ");
+//                    countWords += words.length;
+//                }
+//
+//                return countWords;
+//            }
+//        }
+
+
+
+//        Задание 6.8.6
+//        Возьмём первые 10 натуральных чисел. Если из них взять только те,
+//        что делятся на 4 или на 5, то это будут 4, 5, 8, 10. Их произведение будет равно 1600.
+//        Ваша задача реализовать метод getMul(), который будет считывать файл data.txt, в первой
+//        строке которого записано число N, до которого (включая его) нужно считать произведение
+//        В следующей строке файла через пробел записаны числа, на которые
+//        должны делиться перебираемые числа. Метод должен вернуть произведение таких чисел.
+//        Пример //        Файл data.txt:  //        10 //        4 5  //        Метод getMul() должен вернуть число 1600.
+//        var solution = new Solution();
+//        System.out.println(solution.getMul());
+//        public class Solution {
+//            public int getMul() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("data.txt"));
+//                int limit = Integer.parseInt(scanner.nextLine());
+//                String[] strings = scanner.nextLine().split(" ");
+//                int[] delimiters = new int[strings.length];
+//                for (int i = 0; i < strings.length; i++) {
+//                    delimiters[i] = Integer.parseInt(strings[i]);                }
+//                int mul = 1;
+//                for (int i = 1; i <= limit; i++) {
+//                    for (int delimiter : delimiters) {
+//                        if (i % delimiter == 0) {
+//                            mul *= i;
+//                            break;                }                    }                }
+//                return mul;            }        }
+
+//        Задание 6.8.7
+//        У нас есть робот, который рандомно говорит числа, которые попадают в файл numbers.txt.
+//                Давайте посчитаем, сколько чисел, выданных роботом, совпали со своим порядковым номером
+//        (у числа 1 порядковый номер 1, у числа 5 — 5). Для этого предлагаем
+//        вам реализовать метод writeOrder(), этот метод должен анализировать файл numbers.txt и все числа,
+//        которые совпали со своим номером, должен записать в файл output.txt
+//        (если таких чисел нет, то в файл нужно записать одно число — 0).
+//                Пример 1
+//        Файл numbers.txt:
+//        1
+//        2
+//        4
+//        4
+//        8
+//        Файл output.txt после вызова метода writeOrder():
+//        1 2 4
+//        var solution = new Solution();
+//        solution.writeOrder();
+//        public void writeOrder() throws IOException, FileNotFoundException {
+//            Scanner scanner = new Scanner(new FileInputStream("numbers.txt"));
+//            int index = 1;
+//            String resString = "";
+//            while (scanner.hasNextLine()) {
+//                String nowNumber = scanner.nextLine();
+//                if (Integer.parseInt(nowNumber) == index) {
+//                    resString += nowNumber + " ";
+//                }
+//                index++;
+//            }
+//            if (resString.equals("")) {                resString = "0";
+//            }
+//            // write string in file
+//            FileWriter writer = new FileWriter("output.txt", false);
+//            writer.write(resString.trim());
+//            writer.flush();
+//        }
+
+//        Задание 6.8.8
+//        В файле strings.txt лежат строки, которые, возможно, являются палиндромами.
+//                Реализуйте метод arePalindromes(): этот метод должен вернуть true, если
+//        каждая строка в данном файле — палиндром, или false, если это не так.
+//                Пробелы и большие буквы в строках не учитываются, также гарантируется, что знаков препинания не будет.
+//        Пример
+//        Файл strings.txt:
+//        Коту тащат уток
+//                шалаш
+//        Метод arePalindromes(), должен вернуть true.
+//      var solution = new Solution();
+//     System.out.println(solution.arePalindromes());
+//        public class Solution {
+//            public boolean arePalindromes() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("strings.txt"));
+//
+//                while (scanner.hasNextLine()) {
+//                    String string = scanner.nextLine(); // read new string
+//                    string = string.toLowerCase().replace(" ", "");
+//                    if (!string.equals(new StringBuilder(string.toLowerCase()).reverse().toString())) return false;
+//                }
+//
+//                return true;
+//            }
+//        }
+
+
+//        Задание 6.8.9
+//        В файле data.txt записано число, а затем строки.
+//        Число — это то, на сколько символов может отличаться длина строки от
+//        средней длины строк (то есть это длина всех строк, нацело деленная на количество строк).
+//        Ваша задача — реализовать метод solution(), который должен записать в файл output.txt
+//        среднюю длину строк, а затем все строки, которые отличаются от средней длины
+//        не более чем на данное число в файле data.txt.
+//                P.S. Если таких строк нет, то в файл output.txt следует
+//                записать только среднюю длину строк.
+//        8
+//        It’s me,
+//        var solution = new Solution();
+//        solution.solution();
+//
+//        public class Solution {
+//            public void solution() throws IOException {
+//                Scanner scanner = new Scanner(new FileInputStream("data.txt"));
+//                int length = 0, k = 0;
+//                StringBuilder allStrings = new StringBuilder();
+//
+//                int limit = Integer.parseInt(scanner.nextLine());
+//                while (scanner.hasNextLine()) {
+//                    String string = scanner.nextLine(); // read new string
+//                    allStrings.append(string).append("\n");        // build a big string with all strings
+//                    length += string.length();          // search a median
+//                    k++;
+//                }
+//
+//                StringBuilder result = new StringBuilder(length / k + "\n");      // take median
+//                String[] strings = allStrings.toString().trim().split("\n");   // build array with all strings
+//                for (String string : strings) {
+//                    if (Math.abs(string.length() - length / k) <= limit) result.append(string).append("\n"); // selecting strings
+//                }
+//
+//                // write result in file
+//                FileWriter writer = new FileWriter("output.txt", false);
+//                writer.write(result.toString().trim());
+//                writer.flush();
+//            }
+//        }
+
+
+//        Задание 6.8.10
+//        Напишите программу, которая будет метрономом считать ритм для танцев.
+//        В файле dance.txt
+//        находятся целые числа, каждое с новой строки. Первое число — ритм, который надо отсчитывать
+//        (то есть количество шагов в танце). Затем перечислены длительности танцев (в шагах).
+//        Для каждого числа после первого в файл rhythm.txt нужно записать два числа:
+//        столько раз повторился ритм (сколько полных «элементов» танца было пройдено)
+//        и сколько осталось. Для этого реализуйте метод dance().
+//                Пример
+//        Файл dance.txt:
+//        4
+//        24
+//        15
+//        9
+//        98
+//        Файл rhythm.txt после вызова метода dance():
+//        6 0
+//        3 3
+//        2 1
+//        24 2
+
+//        var solution = new Solution();
+//        solution.dance();
+//        public class Solution {
+//            public void dance() throws IOException {
+//                Scanner scanner = new Scanner(new FileInputStream("dance.txt"));
+//                StringBuilder result = new StringBuilder();
+//                int rhythm = Integer.parseInt(scanner.nextLine()); // read rhythm
+//                while (scanner.hasNextLine()) {
+//                    int step = Integer.parseInt(scanner.nextLine());
+//                    result.append(step / rhythm).append(" ").append(step % rhythm).append("\n");
+//                    // add in result string
+//                }
+//
+//                // write result in file
+//                FileWriter writer = new FileWriter(new File("rhythm.txt"), false);
+//                writer.write(result.toString().trim()); // trim result because \n in the end
+//                writer.flush();
+//            }
+//        }
+
+//        Задание 6.8.11
+//        Каждый год вузы анализируют результаты сдачи ЕГЭ по разным предметам.
+//        На основе этой статистики вузы устанавливают вступительные баллы.
+//        Ваша задача — написать программу-помощник для анализа.
+//        Удобнее реализовывать работу с подобными файлами при помощи CSV-документов,
+//                но мы работаем с обычными файлами, так что все будет немного иначе.
+//                Вам дан файл EGE.txt, вот несколько первых строк этого файла:
+//        Subject;Quantity;Passed in %;Not passed in %
+//                Math;659973;86.2;13.8
+//        History;212526;79.1;20.9
+//…
+//        Как вы поняли, это «таблица»: первая строка — заголовки, остальные — данные.
+//                Задача: реализовать метод solution(double n), в этот метод передается число n — не
+//                менее такого количества процентов должно быть в поле Passed in %.
+//                Этот метод должен вывести в консоль те предметы, которые сдали не меньше данного числа.
+//                Пример
+//        Вызывается метод solution(80). В консоли должно появиться:
+//        Math
+
+
+//        var solution = new Solution();
+//        solution.solution(80);
+//        public class Solution {
+//            public void solution(double n) throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("EGE.txt"));
+//                String[] headers = scanner.nextLine().split(";"); // array with headers
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] element = scanner.nextLine().split(";");
+//                    double percents = Double.parseDouble(element[2]); // take a 2 index of array
+//                    if (percents >= n) System.out.println(element[0]);
+//                }
+//            }
+//        }
+
+//        Задание 6.8.12
+//        Еще одна задача на таблицы. В этот раз есть таблица crop_volumes.txt,
+//        она содержит в себе данные о сборе урожая в разных регионах России, выглядит так:
+//
+//        Part;Federal District;2016;2017;2018;2019;2020
+//        Belgorod region; Central;23.2;24.4;25.9;28.34;39.0
+//        Bryansk region; Central;19.7;20.0;21.4;23.6;24.0
+//…
+//        Реализуйте метод solution(String district, int fromYear, int toYear),
+//        принимающий строку — название федерального округа и данные за 2 года.
+//        Метод должен записать в файл data.txt те субъекты федерации,
+//        которые принадлежат указанному округу, и уровень урожайности в которых
+//        конечный год вырос более чем на 4% по сравнению с начальным.
+//                Конечный файл должен выглядеть примерно так:
+//        Part;2018;2019
+//        Komi Republic;2;2.7
+//        …
+//        P.S. Если не было найдено ни одного подходящего субъекта, то в файл data.txt
+//        следует записать только заголовки.
+
+//        var solution = new Solution();
+//        solution.solution("Bryansk", 2017,2019);
+//
+//        public class Solution {
+//            public void solution(String district, int fromYear, int toYear) throws IOException {
+//                Scanner scanner = new Scanner(new FileInputStream("crop_volumes.txt"));
+//                String[] headers = scanner.nextLine().split(";"); // array with headers
+//                String result = "Part;" + fromYear + ";" + toYear;
+//
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] element = scanner.nextLine().split(";"); // take array of elements
+//                    if (element[1].equals(district)) {
+//                        // take indexes
+//                        int index1 = Arrays.asList(headers).indexOf(String.valueOf(fromYear));
+//                        int index2 = Arrays.asList(headers).indexOf(String.valueOf(toYear));
+//                        // get a values
+//                        double fromYearResult = Double.parseDouble(element[index1]);
+//                        double toYearResult = Double.parseDouble(element[index2]);
+//
+//                        // check that it's true
+//                        if (fromYearResult * 1.04 < toYearResult) {
+//                            // add in result
+//                            result += "\n" + element[0] + ";" + fromYearResult + ";" + toYearResult;
+//                        }
+//                    }
+//                }
+//
+//                // write in file our result
+//                FileWriter writer = new FileWriter(new File("data.txt"), false);
+//                writer.write(result);
+//                writer.flush();
+//            }
+//        }
+
+
+
+//        Задание 6.8.13
+//        Интегрирование — это вычисление площади фигуры, расположенной
+//        под графиком функции (конечно же, это не совсем так, но сейчас нам нужно лишь это).
+//                Представьте, что вам нужно найти площадь под графиком линейной функции.
+//        рисунок
+//        В этом нет ничего сложного, так как это просто площадь трапеции
+//                (произведению полусуммы оснований на высоту).
+//        Хорошо, а что делать, если функция нелинейная? Давайте будем пробовать разбивать функцию на много трапеций, считать площадь каждой, а после суммировать их. Получим что-то приближенное к реальности.
+//        рисунок
+//        Реализуйте метод findSquare(), он должен считать точки, записанные в файле points.txt (каждая строка — это координаты точки (X, Y)), и возвращать вещественное число — площадь фигуры под графиком. Гарантируется, что все точки — целые числа, лежат в первой четверти и отсортированы по оси X (то есть самая первая точка — самая левая).
+//        Пример файла points.txt:
+//        1 1
+//        2 2
+//        Метод findSquare() должен вернуть 1.5
+
+//        var solution = new Solution();
+//        System.out.println(solution.findSquare());
+//        public class Solution {
+//            public double findSquare() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("points.txt"));
+//                String[] prevPoint = scanner.nextLine().split(" "); // previous point
+//                double square = 0;
+//                while (scanner.hasNextLine()) {
+//                    String[] nowPoint = scanner.nextLine().split(" ");
+//                    // get all points
+//                    int prevX = Integer.parseInt(prevPoint[0]);
+//                    int prevY = Integer.parseInt(prevPoint[1]);
+//                    int nowX = Integer.parseInt(nowPoint[0]);
+//                    int nowY = Integer.parseInt(nowPoint[1]);
+//                    double a = prevY;
+//                    double b = nowY;
+//                    double h = nowX - prevX;
+//                    square += (a + b) / 2 * h; // sum squares
+//                    prevPoint = nowPoint;
+//                }
+//                return square;
+//            }
+//        }
+
+
+//        Задание 6.8.14
+//        Итак, время представить, что вы очень умный, но очень ленивый школьник,
+//        которому задают решать очень много легких примеров.
+//        Вы умеете только складывать, вычитать и умножать.
+//        Чтобы не делать уроки весь день, нам нужно написать программу,
+//        которая будет делать это за нас. Итак, в файле arithmetic.txt лежат примеры,
+//        которые нам надо решить. Выглядят они так:
+//        5 + 3
+//        2 * 8
+//        13 - 7
+//        Наша задача — написать метод solve(), который должен считать этот файл и
+//        решить данные примеры. Ответы записать в файл answers.txt,
+//        который должен выглядеть так:
+//        5 + 3 = 8
+//        2 * 8 = 16
+//        13 - 7 = 6
+
+//        var solution = new Solution();
+//        solution.solve();
+//        public class Solution {
+//            public void solve() throws IOException {
+//                Scanner scanner = new Scanner(new FileInputStream("arithmetic.txt"));
+//                StringBuilder answers = new StringBuilder();
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] element = scanner.nextLine().split(" "); // split to array
+//
+//                    int first = Integer.parseInt(element[0]);
+//                    String symbol = element[1];
+//                    int second = Integer.parseInt(element[2]);
+//
+//                    // check symbols and add task in answers
+//                    switch (symbol) {
+//                        case "+":
+//                            answers.append(first).append(" + ").append(second).append(" = ").append(first + second).append("\n");
+//                            break;
+//                        case "-":
+//                            answers.append(first).append(" - ").append(second).append(" = ").append(first - second).append("\n");
+//                            break;
+//                        case "*":
+//                            answers.append(first).append(" * ").append(second).append(" = ").append(first * second).append("\n");
+//                    }
+//
+//                    // write in file
+//                    FileWriter writer = new FileWriter(new File("answers.txt"), false);
+//                    writer.write(answers.toString().trim());
+//                    writer.flush();
+//                }
+//            }
+//        }
+
+//        Задание 6.8.15
+//   Ярмарки — это весело, а главное прибыльно. Власти одного королевства
+//   хотят иметь с этого свой доход, поэтому они вводят налоги.
+//   Налог зависит от дохода конкретного торговца, а значит, его нужно
+//   уметь быстро узнавать.
+//   В метод findMerchant() поступает строка — имя торговца.
+//
+//   Вам будет доступен файл outcome.txt, в котором записаны торговые
+//   операции прошедшего дня. Вот заголовки файла и несколько его первых строк:
+//        id;merchant;product;quantity;price
+//        1;Cherevik;hemp;20;5
+//        2;Gresto;straw;12;6
+//   Ваша задача — посчитать доход данного данного торговца
+//   по каждому товару (количество, умноженное на цену) и налог,
+//   который должен заплатить торговец (15% от заработанного). И вывести это в консоль.
+//        Пример
+//        В метод findMerchant() поступает имя Cherevik.
+//                Файл outcome.txt:
+//        id;merchant;product;quantity;price
+//        1;Cherevik;hemp;20;5
+//        2;Cherevik;straw;12;6
+//        3;Gritsko;harness;3;15
+//        Вывод:
+//        hemp,20,5,100
+//        straw,12,6,72
+//        tax: 25.8
+
+//        var solution = new Solution();
+//        solution.findMerchant("Cherevik");
+//
+//        public class Solution {
+//            public void findMerchant(String name) throws IOException {
+//                // read file and put it in array
+//                Scanner scanner = new Scanner(new FileInputStream("outcome.txt"));
+//                scanner.nextLine();
+//                int s = 0;
+//                String result = "";
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] element = scanner.nextLine().split(";");
+//                    if (element[1].equals(name)) {
+//                        System.out.println(element[2] + "," +  element[3] + "," + element[4] + "," + (Integer.parseInt(element[3]) * Integer.parseInt(element[4])));
+//                        s += Integer.parseInt(element[3]) * Integer.parseInt(element[4]);
+//                    }
+//                }
+//                System.out.println("tax: " + s * 0.15);
+//            }
+//        }
+//        Задание 6.8.16
+//    Научимся общаться с не самым умным роботом.
+//    Робот умеет говорить только с помощью бинарного алфавита,
+//    то есть каждая буква в нём кодируется 0 и 1.
+//    Давайте напишем программу-перекодировщик, которая переведёт наше сообщение
+//    на язык этого робота.
+//    Реализуйте метод translate() — этот метод должен считать
+//    текст из сообщения message.txt и перевести его в строку из 0 и 1.
+//    После чего вернуть строку — переведенное сообщение,
+//    с сохранением всех символов (запятых, точек и так далее),
+//    табуляций и новых строк (энтеров).
+//                Таблица перевода
+//        1000001
+//        A
+//        1000010
+//        B
+//        1000011
+//        C
+//        ....
+//                Пример
+//
+//        Файл message.txt:
+//        PRIVET, KAK U TEBYA DELA?
+//        Метод translate() должен вернуть строку:
+//
+//    101000010100101001001101011010001011010100,
+//    100101110000011001011 1010101 10101001000101100001010110011000001
+//    1000100100010110011001000001?
+//        var solution = new Solution();
+//        System.out.println(solution.translate());
+//        public class Solution {
+//            public String translate() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("message.txt"));
+//                String[] binLetters = ("1000001;1000010;1000011;1000100;1000101;1000110;1000111;1001000;" +
+//                        "1001001;1001010;1001011;1001100;1001101;1001110;1001111;1010000;1010001;1010010;" +
+//                        "1010011;1010100;1010101;1010110;1010111;1011000;1011001;1011010").split(";");
+//                String[] englishLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+//                String message = "";
+//
+//                while (scanner.hasNextLine()) {
+//                    String messageString = scanner.nextLine();
+//                    String[] array = messageString.split("");
+//                    for (String symbol : array) {
+//                        int index = findSymbol(symbol, englishLetters);
+//                        message += index != -1 ? binLetters[index] : symbol;
+//                    }
+//                    message += "\n";
+//                }
+//                return message.trim();
+//            }
+//
+//            private int findSymbol(String symbol, String[] engLetters) {
+//                for (int i = 0; i < engLetters.length; i++) {
+//                    if (engLetters[i].equals(symbol)) return i;
+//                }
+//                return -1;
+//            }
+//        }
+
+//        Задание 6.8.17
+//        Профессиональный грибник только что составил карту грибных мест в лесу.
+//        Лес представляет собой квадрат 10 на 10 километров, поэтому грибник
+//        составил схему леса в виде квадрата 10 на 10 клеток.
+//            В каждую клетку грибник написал цифры, чем больше цифра,
+//        тем больше там грибов. Но так как грибник уже стар, чтобы бегать
+//        по всему лесу за грибами, да и другие грибники могут успеть вынести
+//        весь лес, вам нужно продумать самый выгодный маршрут и вывести в
+//        консоль количество грибов, которые сможет собрать грибник, если
+//        начинает он в самой левой верхней клетке леса, а передвигаться он
+//        может только вправо и вниз.
+//            Для решения данной задачи, вы должны реализовать метод findMaxQuantity(),
+//            который проанализирует файл forest.txt и вернёт максимально
+//           возможное количество грибов, которые сможет собрать грибник.
+//                Вот как он выглядит:
+//        51;21;93;48;45;100;67;39;18;29
+//        57;43;97;51;92;10;93;32;19;58
+//        63;16;31;16;78;88;90;72;37;67
+//        10;57;64;25;96;50;81;65;91;69
+//        99;43;95;7;40;76;18;34;5;65
+//        35;19;71;77;64;38;62;56;10;2
+//        100;57;27;26;51;33;100;11;53;1
+//        11;79;49;46;37;69;80;31;25;39
+//        22;71;20;23;11;12;39;16;64;34
+//        4;25;87;84;30;48;77;13;40;33
+//        Для данного файла ответ будет: 1204
+//        System.out.println(new Solution().findMaxQuantity());
+//        public class Solution {
+//            public int findMaxQuantity() throws FileNotFoundException {
+//                int[][] forest = new int[10][10];
+//                Scanner scanner = new Scanner(new FileInputStream("forest.txt"));
+//                int k = 0;
+//
+//                // build array
+//                while (scanner.hasNextLine()) {
+//                    String[] string = scanner.nextLine().split(";");
+//                    for (int i = 0; i < 10; i++) {
+//                        forest[k][i] = Integer.parseInt(string[i]);
+//                    }
+//                    k++;
+//                }
+//                // find maximum
+//                for (int i = 1; i < 10; i++) {
+//                    forest[i][0] += forest[i - 1][0];
+//                    forest[0][i] += forest[0][i - 1];
+//                }
+//
+//                for (int i = 1; i < 10; i++) {
+//                    for (int j = 1; j < 10; j++) {
+//                        forest[i][j] += Math.max(forest[i - 1][j], forest[i][j - 1]);
+//                    }
+//                }
+//                return forest[9][9];
+//            }
+//        }
+
+
+
+//        Задание 6.8.18
+//        Деревья, высаженные вокруг поселка, выросли неожиданно быстро.
+//        И теперь они загораживают слишком много солнца.
+//        Совсем вырубать их жалко, а вот проредить надо.
+//        Жители поселка договорились пригласить лесорубов, и в качестве
+//        оплаты отдать им срубленные деревья. Вот только рубить разрешили так,
+//        чтобы нигде не оказалось срубленным два соседних дерева.
+//
+//       Чем толще дерево, тем дороже оно стоит. Напишите программу,
+//        которая подскажет лесорубам, какую наибольшую выгоду можно получить,
+//        но и условие жителей выполнить.
+//        В файле trees.txt записаны целые числа через пробел — толщина каждого дерева.
+//
+//        Вывести необходимо одно число — максимальную сумму,
+//        которую можно получить при условии, что нельзя рубить
+//        два соседних дерева. Деревья полностью окружают поселок,
+//        поэтому последнее число соседствует с первым.
+//                Пример
+//        trees.txt:
+//        2 3 2
+//        Вывод:
+//        3
+//        trees.txt:
+//        1 2 3 1
+//        Вывод:
+//        4
+//        В первом примере нельзя взять числа 2 и 2, поскольку они соседствуют
+//        друг с другом.
+//       Будем считать, что если дерево одно, то срубить можно только его,
+//        а если их два, то только одно из них.
+//        var solution = new Solution();
+//        solution.solution();
+//        public class Solution {
+//            public void solution() throws FileNotFoundException {
+//                Scanner scanner = new Scanner(new FileInputStream("trees.txt"));
+//                String[] trees = scanner.nextLine().split(" ");
+//
+//                // check that we have more than 1 tree
+//                if (trees.length != 1) {
+//                    int x = 0, y = 0;
+//                    int x1 = 0, y1 = 0;
+//
+//                    int tree = findTree(trees, 1, trees.length);
+//                    int tree2 = findTree(trees, 0, trees.length - 1);
+//
+//                    System.out.println(Math.max(tree, tree2));
+//                } else {
+//                    System.out.println(trees[trees.length - 1]); // else sout this tree
+//                }
+//            }
+//
+//            private int findTree(String[] trees, int start, int end) {
+//                int x = 0, y = 0;
+//                int tree = 0;
+//
+//                for (int i = start; i < end; i++) {
+//                    int temp = x;
+//                    x = y + Integer.parseInt(trees[i]);
+//                    y = Math.max(temp, y);
+//                    tree = Math.max(x, y);
+//                }
+//                return tree;
+//            }
+//        }
+
+//        Задание 6.8.19
+//        Давайте напишем программу по анализу файлов. Вам доступен файл files.txt,
+//        в котором находится информация о некоторых файлах, расширение
+//        которых может быть: ZIP, BMP, TXT. У каждого файла есть название,
+//        расширение и размер (байты, килобайты, мегабайты). Ваша задача
+//        сгруппировать файлы в группы по расширению, выставить группы в
+//        алфавитном порядке, внутри группы файлы также должны быть отсортированы.
+//        После каждой группы должен быть выведен суммарный объем, сколько на
+//        компьютере файлы данной группы занимают места. И все это вы должны
+//        записать в файл output.txt.
+//        Итоговое значение объёма группы файлов записывается в самых
+//        крупных единицах измерения с округлением до целых (гарантируется,
+//        что файлов меньше 100).
+//        Пример
+//        Файл files.txt:
+//        input.txt 3000 B
+//        scratch.zip 5 MB
+//        output.txt 1 KB
+//        Файл output.txt после вызова метода solution():
+//        input.txt
+//        output.txt
+//                ----------
+//        Summary: 4 KB
+//        scratch.zip
+//                ----------
+//        Summary: 5 MB
+
+//        var solution = new Solution();
+//        solution.getOutput();
+//
+//        public class Solution {
+//            public void getOutput() throws IOException {
+//                Scanner scanner = new Scanner(new FileInputStream("files.txt"));
+//
+//                // creating arrays for all types of files
+//                String[] tempZip = new String[100];
+//                String[] tempBmp = new String[100];
+//                String[] tempTxt = new String[100];
+//
+//                // creating counters for all types of files
+//                int zipB = 0;
+//                int bmpB = 0;
+//                int txtB = 0;
+//
+//                // creating counters for all types of files
+//                int zipCount = 0;
+//                int bmpCount = 0;
+//                int txtCount = 0;
+//
+//                while (scanner.hasNextLine()) {
+//                    String[] fileInfo = scanner.nextLine().split(" ");
+//
+//                    // get all info about file
+//                    String name = fileInfo[0];
+//                    int size = Integer.parseInt(fileInfo[1]);
+//                    String unit = fileInfo[2];
+//                    String type = name.split("\\.")[1];
+//
+//                    // converting to bytes
+//                    if (unit.equals("KB")) size *= 1024;
+//                    else if (unit.equals("MB")) size *= 1024 * 1024;
+//
+//                    // add file in array
+//                    if (type.equals("zip")) {
+//                        tempZip[zipCount] = name;
+//                        zipB += size;
+//                        zipCount++;
+//                    } else if (type.equals("bmp")) {
+//                        tempBmp[bmpCount] = name;
+//                        bmpB += size;
+//                        bmpCount++;
+//                    } else {
+//                        tempTxt[txtCount] = name;
+//                        txtB += size;
+//                        txtCount++;
+//                    }
+//                }
+//
+//                String[] zip = new String[zipCount];
+//                String[] bmp = new String[bmpCount];
+//                String[] txt = new String[txtCount];
+//
+//                if (zipCount >= 0) System.arraycopy(tempZip, 0, zip, 0, zipCount);
+//                if (bmpCount >= 0) System.arraycopy(tempBmp, 0, bmp, 0, bmpCount);
+//                if (txtCount >= 0) System.arraycopy(tempTxt, 0, txt, 0, txtCount);
+//
+//                // sorting arrays
+//                Arrays.sort(zip);
+//                Arrays.sort(bmp);
+//                Arrays.sort(txt);
+//
+//                // convert to max units
+//                String[] zipArr = convertToMaxUnits(zipB);
+//                String[] bmpArr = convertToMaxUnits(bmpB);
+//                String[] txtArr = convertToMaxUnits(txtB);
+//
+//                // begin writing in file
+//                String resultString = "";
+//                resultString += buildResultString(bmp, bmpArr);
+//                resultString += buildResultString(txt, txtArr);
+//                resultString += buildResultString(zip, zipArr);
+//
+//                FileWriter writer = new FileWriter(new File("output.txt"), false);
+//                writer.write(resultString.trim());
+//                writer.flush();
+//            }
+//
+//            private String[] convertToMaxUnits(int bytes) {
+//                // array with {B, KB, MB}
+//                double[] bytesToUnits = {(double) bytes, (double) bytes / 1024, (double) bytes / (1024 * 1024)};
+//
+//                String nowType = "B";
+//                if (bytesToUnits[2] >= 0.5) {
+//                    nowType = "MB";
+//                } else if (bytesToUnits[1] >= 0.5) {
+//                    nowType = "KB";
+//                }
+//
+//                if (nowType.equals("B")) return new String[]{bytesToUnits[0] + "", nowType};
+//                else if (nowType.equals("KB")) return new String[]{Math.round(bytesToUnits[1]) + "", nowType};
+//                else return new String[]{Math.round(bytesToUnits[2]) + "", nowType};
+//            }
+//
+//            private String buildResultString(String[] arr, String[] units) {
+//                String resultString = "";
+//                if (arr.length > 0) {
+//                    for (String fileName : arr) {
+//                        resultString += fileName + "\n";
+//                    }
+//                    resultString += "----------\nSummary: " + units[0] + " " + units[1] + "\n\n";
+//                }
+//                return resultString;
+//            }
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
 }
 
